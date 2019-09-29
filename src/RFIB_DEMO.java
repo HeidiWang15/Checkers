@@ -130,16 +130,12 @@ public class RFIB_DEMO extends PApplet {
 			}
 			if(hintColor==error){
 				JOptionPane.showMessageDialog(frame, "Invalid action!");
-				// textFont(f1);
-				// text("Invalid move!", boxSizey/2-H/2,(int)(W-boxSizex*1.1));	
 				start=false;
 			}
 		}else{
-			// hintColor=warning;
 			fill(255,0,0);
 			textFont(f2);
 			textAlign(CENTER);
-			// text("'r': start/continue", boxSizey/2-H/2,(int)(W-boxSizex*0.7));	
 			text("'r': start/continue", H/2, (int)(boxSizex*0.2));	
 		}
 	}
@@ -169,7 +165,6 @@ public class RFIB_DEMO extends PApplet {
 			fill(255, 160, 42);
 			if ((millis()/100)%3!=0)
 				text("win!", (int)(boxSizey*(b-w<0?2.2:boxNumY-1.2)),(int)(-boxSizex*0.1));
-				// text("win!", (int)(boxSizey*(turn<0?2.2:boxNumY-1.2)-H+boxSizey/2),(int)(W-boxSizex*0.9));
 		}
 	}
 	public void takeOff(){
@@ -229,7 +224,6 @@ public class RFIB_DEMO extends PApplet {
 			if(movingID!=-1)
 				hintColor=error;
 		}else if(hintColor==target){
-			// hints.add(new int[]{RFIB.StackedOrders3D.get(movingID)[0],RFIB.StackedOrders3D.get(movingID)[1]});}
 			hintColor=error;
 		}else if(hintColor==movable){
 			hintColor=error;
@@ -301,14 +295,6 @@ public class RFIB_DEMO extends PApplet {
 				}
 			}
 			System.out.print(evt.getCount());
-		// if (evt.getCount()<2){
-		// 	if((movingID/10+movingID%10)%2!=1)
-		// 		movingID++;
-		// 	RFIB._Testing_RemoveHoldingTag("7428 0000 9999 0" + (blocks.get(0)[0] + 1) + "0" + (blocks.get(0)[1] + 1) + " 0001", "7428 0000 " + Integer.toString(movingID / 100) + " " + Integer.toString(movingID).substring(4, 6) + "01 0001");
-		// 	System.out.print("move:");
-		// 	System.out.println(movingID);
-		// }
-		// else{
 		while (RFIB.StackedOrders3D.containsKey(movingID)){
 			RFIB._Testing_RemoveHoldingTag("7428 0000 9999 0" + (blocks.get(0)[0] + 1) + "0" + (blocks.get(0)[1] + 1) + " 0001", "7428 0000 " + Integer.toString(movingID / 100) + " " + Integer.toString(movingID).substring(4, 6) + "01 0001");
 			System.out.print("move:");
@@ -319,7 +305,6 @@ public class RFIB_DEMO extends PApplet {
 				movingID++;
 			}
 		}
-		// }
 			movingID=-1;
 		}
 		else if (mouseButton == RIGHT){
@@ -380,7 +365,6 @@ public class RFIB_DEMO extends PApplet {
 			else if ((0 <= posX + 2) && (posX + 2 < boxNumX) && (0 <= posY - dir * 2) && (posY - dir * 2 < boxNumY)) {
 				k = getIDfromLocation(posX + 1, posY - dir * 1);
 
-				// if ((k != 0) && ((RFIB.StackedOrders3D.get(k)[5]/10000-92.5)* turn > 0.0D)&& 
 				if ((k != 0) && ((k/10000-92.5)* turn > 0.0D)&& 
 					(getIDfromLocation(posX + 2, posY - dir * 2) == 0)) {
 					IntList eat1=eat.copy();
@@ -392,7 +376,6 @@ public class RFIB_DEMO extends PApplet {
 			if (posX - 2==from&&posY - dir * 2==to){;}
 			else if ((0 <= posX - 2) && (posX - 2 <boxNumX) && (0 <= posY - dir * 2) && (posY - dir * 2 < boxNumY)) {
 				k = getIDfromLocation(posX - 1, posY - dir * 1);
-				// if ((k != 0) && ((RFIB.StackedOrders3D.get(k)[5]/10000-92.5) * turn > 0.0D) && 
 				if ((k != 0) && ((k/10000-92.5) * turn > 0.0D) && 
 					(getIDfromLocation(posX - 2, posY - dir * 2) == 0)) {
 					IntList eat2=eat.copy();
@@ -535,7 +518,7 @@ public class RFIB_DEMO extends PApplet {
 	public void keyPressed() {
 		if(key=='b') preStack();
 		if(key=='q') printBlocks();
-		if(key=='p') RFIB.printStackedOrders();
+		if(key=='p') RFIB.printStackedOrders3D();
 		if(key=='t') {turn=-turn;hintColor=movable;hints.clear();System.out.println(turn);}
 		if(key=='r') {start =reload();System.out.println(blocks.size());}
 		// if(key==' ') { RFIB.startToBuild(); RFIB.printNoiseIDs(); }
